@@ -9,6 +9,8 @@ from caching import cache
 from models.customer import Customer
 from models.customerAccount import CustomerAccount
 from models.product import Product
+from models.order import Order
+from models.orderProduct import order_product
 
 from routes.customerBP import customer_blueprint
 from routes.productBP import product_blueprint
@@ -26,6 +28,9 @@ def create_app(config_name):
     cache.init_app(app)
     migrate.init_app(app, db)
 
+    blueprint_config(app)
+    config_rate_limit()
+
     return app
 
 def blueprint_config(app):
@@ -39,8 +44,7 @@ def config_rate_limit():
 if __name__ == "__main__":
     app = create_app('DevelopmentConfig')
 
-    blueprint_config(app)
-    config_rate_limit()
+    
 
     # with app.app_context():
     #     db.drop_all()

@@ -1,5 +1,6 @@
 from database import db, Base
 from sqlalchemy.orm import Mapped, mapped_column
+from typing import List
 
 class Customer(Base):
     __tablename__ = "customers"
@@ -9,3 +10,7 @@ class Customer(Base):
     phone: Mapped[str] = mapped_column(db.String(15))
     # One-to-One: Customer and CustomerAccount
     customer_account: Mapped['CustomerAccount'] = db.relationship(back_populates='customer')
+    orders: Mapped[List['Order']] = db.relationship(back_populates='customer')
+
+    def __repr__(self):
+        return f"<Customer {self.id}|{self.name}"
