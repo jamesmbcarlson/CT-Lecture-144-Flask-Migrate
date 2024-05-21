@@ -1,5 +1,5 @@
 from flask import Flask
-from database import db
+from database import db, migrate
 from schemas import ma
 from limiter import limiter
 from caching import cache
@@ -24,6 +24,7 @@ def create_app(config_name):
     ma.init_app(app)
     limiter.init_app(app)
     cache.init_app(app)
+    migrate.init_app(app, db)
 
     return app
 
@@ -41,8 +42,8 @@ if __name__ == "__main__":
     blueprint_config(app)
     config_rate_limit()
 
-    with app.app_context():
-        db.drop_all()
-        db.create_all()
+    # with app.app_context():
+    #     db.drop_all()
+    #     db.create_all()
         
     app.run(debug=True) # Brian set his port here; e.g, port=8888
