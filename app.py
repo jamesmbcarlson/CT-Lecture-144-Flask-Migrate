@@ -7,7 +7,7 @@ from caching import cache
 # VS Code says not access, but apparently these are what are creating our tables? <-- I'm not conviced, just because I took these out of a similar homework assignment and the tables were still created
 # okay, I just tested it out; customer's get created elsewhere, but the other two, at the time of writing this note, only have a model (no controllers, schema, etc) so they're initialized as empty tables, with the expected columns
 from models.customer import Customer
-from models.customerAccount import CustomerAccount
+# from models.customerAccount import CustomerAccount
 from models.product import Product
 from models.order import Order
 from models.orderProduct import order_product

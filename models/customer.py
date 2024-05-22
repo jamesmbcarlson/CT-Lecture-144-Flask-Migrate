@@ -8,8 +8,9 @@ class Customer(Base):
     name: Mapped[str] = mapped_column(db.String(255), nullable=False)
     email: Mapped[str] = mapped_column(db.String(320))
     phone: Mapped[str] = mapped_column(db.String(15))
+    username: Mapped[str] = mapped_column(db.String(255))
+    password: Mapped[str] = mapped_column(db.String(255))
     # One-to-One: Customer and CustomerAccount
-    customer_account: Mapped['CustomerAccount'] = db.relationship(back_populates='customer')
     orders: Mapped[List['Order']] = db.relationship(back_populates='customer')
 
     def __repr__(self):
