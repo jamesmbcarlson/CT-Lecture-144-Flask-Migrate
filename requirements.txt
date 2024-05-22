@@ -7,6 +7,7 @@ colorama==0.4.6
 Deprecated==1.2.14
 Flask==3.0.3
 Flask-Caching==2.3.0
+Flask-HTTPAuth==4.8.0
 Flask-Limiter==3.7.0
 flask-marshmallow==1.2.1
 Flask-Migrate==4.0.7

@@ -78,3 +78,7 @@ def get_token(username, password):
         return auth_token
     else:
         return None
+    
+# Function that will take in a customer id and return customer or None
+def get_customer(customer_id):
+    return db.session.get(Customer, customer_id)
