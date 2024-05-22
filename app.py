@@ -15,7 +15,7 @@ from models.orderProduct import order_product
 from routes.customerBP import customer_blueprint
 from routes.productBP import product_blueprint
 from routes.orderBP import order_blueprint
-
+from routes.tokenBP import token_blueprint
 
 
 def create_app(config_name):
@@ -38,6 +38,7 @@ def blueprint_config(app):
     app.register_blueprint(customer_blueprint, url_prefix='/customers')
     app.register_blueprint(product_blueprint, url_prefix='/products')
     app.register_blueprint(order_blueprint, url_prefix='/orders')
+    app.register_blueprint(token_blueprint, url_prefix='/token')
 
 def config_rate_limit():
     limiter.limit("100 per hour")(customer_blueprint)
