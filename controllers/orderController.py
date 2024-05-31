@@ -2,11 +2,15 @@ from flask import request, jsonify
 from schemas.orderSchema import order_schema, orders_schema
 from marshmallow import ValidationError
 from services import orderService
+from auth import token_auth
 
-
+@token_auth.login_required
 def save():
     try:
-        order_data = order_schema.load(request.json)
+        raw_data = request.json
+        logged_in_user = token_auth.current_user()
+        raw_data['customer_id'] = logged_in_user.id
+        order_data = order_schema.load(raw_data)
         order_save = orderService.save(order_data)
         return order_schema.jsonify(order_save), 201
     except ValidationError as err:

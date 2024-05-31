@@ -49,3 +49,13 @@ def get_token():
     except ValidationError as err:
         return jsonify(err.messages), 400
     
+def get_customer(customer_id):
+    customer = customerService.get_customer(customer_id)
+    if customer:
+        return customer_output_schema.jsonify(customer)
+    else:
+        resp = {
+            "status": "error",
+            "message": f"A customer with ID {customer_id} does not exist"
+        }
+        return resp, 404

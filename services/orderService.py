@@ -26,7 +26,7 @@ def save(order_data):
                 raise ValueError(f"Customer with ID {customer_id} does not exist")
             
             # Create a new order in the database
-            new_order = Order(date=order_data['date'], customer_id=customer_id, products=products)
+            new_order = Order(customer_id=order_data['customer_id'], products=products)
             session.add(new_order)
             session.commit()
 

@@ -5,7 +5,7 @@ from marshmallow import ValidationError
 from auth import token_auth
 
 
-@token_auth.login_required
+@token_auth.login_required(role="admin")
 def save():
     try:
         # Validate and deserialize the request data

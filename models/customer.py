@@ -12,6 +12,10 @@ class Customer(Base):
     password: Mapped[str] = mapped_column(db.String(255))
     # One-to-One: Customer and CustomerAccount
     orders: Mapped[List['Order']] = db.relationship(back_populates='customer')
+    role_id: Mapped[int] = mapped_column(db.ForeignKey('roles.id'), default=1)
+    role: Mapped["Role"] = db.relationship(back_populates='customers')
+
+    
 
     def __repr__(self):
-        return f"<Customer {self.id}|{self.name}"
+        return f"<Customer {self.id}|{self.name}>"

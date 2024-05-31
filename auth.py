@@ -15,3 +15,7 @@ def verify(token):
 @token_auth.error_handler
 def handle_error(status_code):
     return {"error": "Invalid Token. Please try again"}, status_code
+
+@token_auth.get_user_roles
+def get_roles(customer):
+    return [customer.role.role_name]
