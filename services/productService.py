@@ -13,7 +13,10 @@ def save(product_data):
         session.refresh(new_product)
         return new_product
 
-def find_all():
+def find_all(page=1, per_page=10, search_term=None):
     query = db.select(Product)
+    if search_term:
+        query = query.where(Product.name.ilike(f"%{search_term}%"))
+    query = query.limit(per_page).offset((page-1)*per_page)
     products = db.session.execute(query).scalars().all()
     return products

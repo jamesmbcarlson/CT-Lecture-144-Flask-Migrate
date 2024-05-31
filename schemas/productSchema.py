@@ -6,5 +6,12 @@ class ProductSchema(ma.Schema):
     name = fields.String(required=True, validate=validate.Length(min=5, max=20)) # Product name must be between 5 and 20 characters
     price = fields.Float(required=True, validate=validate.Range(min=0)) # Product price must be >= 0
 
+    class Meta:
+        fields = ("id", "name", "price")
+
+class ProductIdSchema(ma.Schema):
+    id = fields.Integer(required=True)
+    
+
 product_schema = ProductSchema()
 products_schema = ProductSchema(many=True) # for handling multiple products

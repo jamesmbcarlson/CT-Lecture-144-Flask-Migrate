@@ -1,0 +1,20 @@
+https://flask-migrate.readthedocs.io/en/latest/
+
+install:
+pip install flask-migrate (( && pip freeze > requirements.txt <-- to update requirements))
+
+commented out dropping and creating tables in app.py
+add this to .env:
+FLASK_APP='app:create_app("DevelopmentConfig")'
+
+in CLI, ran:
+flask db init
+
+then:
+flask db migrate -m "Add customer, customerAccount, and product table"
+
+^ created a new version of the database?? or something?? 
+
+then:
+flask db upgrade
+^ new version??

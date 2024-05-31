@@ -7,10 +7,14 @@ class CustomerSchema(ma.Schema):
     name = fields.String(required=True)
     email = fields.String(required=True)
     phone = fields.String(required=True)
+    username = fields.String(required=True)
+    password = fields.String(required=True)
 
-    class Meta:
-        fields = ("id", "name", "email", "phone")
+    # class Meta:
+    #     fields = ("id", "name", "email", "phone")
 
 # Create instances of the schema
-customer_schema = CustomerSchema()
-customers_schema = CustomerSchema(many=True)
+customer_input_schema = CustomerSchema()
+customer_output_schema = CustomerSchema(exclude=["password"])
+customers_schema = CustomerSchema(many=True, exclude=["password"])
+customer_login_schema = CustomerSchema(only=["username", "password"])
